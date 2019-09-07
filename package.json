@@ -1,0 +1,16 @@
+{
+  "name": "parking-lot-ticket",
+  "version": "1.0.0",
+  "description": "Parking lot ticket system",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha tests"
+  },
+  "author": "Sachin",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
+}
