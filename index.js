@@ -2,6 +2,7 @@
 
 const inputParser = require('./util/input-parser'),
 commandMapper = require('./util/command-mapper'),
+parkVehicle = require('./src/Parking'),
 readline = require('readline');
 
     const failedCB = function(err){;
@@ -12,17 +13,18 @@ readline = require('readline');
 
   //Node CLI
     const rl = require('readline').createInterface(process.stdin, process.stdout),
-    prefix = 'Enter Parking Info > ';
+    prefix = 'Enter Parking Info > ',
+    parking = new parkVehicle();
     rl.on('line', (input) => {
     inputParser.parseLine(input, (err, parsedArgs) => {
         if(err) { 
             failedCB(err);
         }
-        commandMapper.getCommand(parsedArgs.cmd, function(err, cmdFunc){
-        if(err){
+        commandMapper.getCommand(parsedArgs.cmd, function(err, mapcommmandFunc){
+        if(err || typeof parking[mapcommmandFunc] !== 'function'){
             console.log('Invalid Input');
         } else {
-            console.log(parsedArgs.args[0] + " : "+ parsedArgs.args[1]);
+            console.log(parking[mapcommmandFunc](parsedArgs.args[0], parsedArgs.args[1]));
         }
         });
     });

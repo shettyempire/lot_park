@@ -1,13 +1,13 @@
 'use strict';
 
 const parseLine = (line, callback) => {
-  let words, parsedArgs, err;
+  let words;
   words = line.split(' ');
   const parsedArgs = {
     cmd: words.shift(),
     args: words
   };
-  
+
   return ((parsedArgs.cmd && parsedArgs.args) ? callback(null, parsedArgs) : callback({message: 'Invalid input'}, null));
 };
 
